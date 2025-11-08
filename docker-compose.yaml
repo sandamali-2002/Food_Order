@@ -1,11 +1,12 @@
 
 
+
 services:
   frontend:
     build: ./frontend
     container_name: frontend_c
     ports:
-      - '5173:5173'   # host:container
+      - '5173:5173'
     command: npm run dev -- --host 0.0.0.0
     depends_on:
       - backend
@@ -16,6 +17,23 @@ services:
     ports:
       - '4000:4000'
     environment:
-      - MONGO_URI=mongodb+srv://chandimasandamali2002_db_user:9XNrdMN9u8L1hgAb@cluster0.j2e0bmm.mongodb.net/foody_db?retryWrites=true&w=majority&appName=Cluster0
+      - MONGO_URI=mongodb://mongo:27017/foody_db
+    depends_on:
+      - mongo
     stdin_open: true
     tty: true
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo_c
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: foody_db
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

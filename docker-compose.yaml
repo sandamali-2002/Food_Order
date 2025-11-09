@@ -1,5 +1,4 @@
-
-
+version: '3.9'
 
 services:
   frontend:
@@ -10,30 +9,15 @@ services:
     command: npm run dev -- --host 0.0.0.0
     depends_on:
       - backend
+    environment:
+      - VITE_API_URL=http://localhost:4000
 
   backend:
     build: ./Backend
     container_name: backend_c
     ports:
       - '4000:4000'
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/foody_db
-    depends_on:
-      - mongo
+    env_file:
+      - ./Backend/.env
     stdin_open: true
     tty: true
-
-  mongo:
-    image: mongo:6.0
-    container_name: mongo_c
-    ports:
-      - '27017:27017'
-    environment:
-      MONGO_INITDB_DATABASE: foody_db
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    volumes:
-      - mongo_data:/data/db
-
-volumes:
-  mongo_data:

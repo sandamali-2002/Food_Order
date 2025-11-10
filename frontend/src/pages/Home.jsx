@@ -1,9 +1,9 @@
 import React from 'react'
-
+import ShopBanner from '../Components/Shopbanner'
 function Home() {
   return (
     <div>
-      <h1>Welcome to the Home Page</h1>
+      <ShopBanner />
     </div>
   )
 }

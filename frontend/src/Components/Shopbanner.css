@@ -1,0 +1,54 @@
+.shop-banner {
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(90deg, #000000, #131212);
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    color: white;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 2s ease-out, transform 2s ease-out;
+    padding: 400px;
+    height: 100vh;
+}
+
+
+.shop-banner.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.shop-text {
+    font-size: 35px;
+    font-weight: lighter;
+    margin-bottom: 25px;
+}
+
+
+.shop-now-btn {
+    background-color: #f7a816;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s ease-in-out;
+    opacity: 0;
+    transform: scale(0.8);
+}
+.shop-now-btn:hover{
+    background-color: #d97706;
+  color: #000;
+  transition: 1s;
+}
+
+
+.shop-now-btn {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 1s ease-in 0.5s, transform 0.5s ease-in 0.5s;
+}

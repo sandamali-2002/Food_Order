@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 
 function Register() {
+
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstname: '',
     lastname: '',
@@ -26,6 +29,7 @@ function Register() {
     try {
       const res = await axios.post('http://localhost:4000/api/auth/register', formData);
       alert(res.data.message);
+      navigate('/order');
     } catch (err) {
       alert(err.response?.data?.message || 'Error registering');
     }

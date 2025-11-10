@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 function Login() {
+    const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({ email: '', password: '' });
 
   const handleChange = (e) => {
@@ -13,6 +17,8 @@ function Login() {
     try {
       const res = await axios.post('http://localhost:4000/api/auth/login', formData);
       alert(res.data.message);
+            navigate('/order');
+
       console.log('JWT Token:', res.data.token);
     } catch (err) {
       alert(err.response?.data?.message || 'Error logging in');

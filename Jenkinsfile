@@ -1,13 +1,14 @@
 pipeline {
-    agent {
-        docker { 
-            image 'node:20-alpine' 
-            args '-u root'
-        }
+    agent any
+
+    tools {
+        nodejs 'node' 
     }
 
     environment {
-        NODE_ENV = 'development'
+        // If the tool name above is not configured in Jenkins, this will fail.
+        // Ensure "Global Tool Configuration" -> "NodeJS" has an installation named "node".
+        CI = 'true'
     }
 
     stages {

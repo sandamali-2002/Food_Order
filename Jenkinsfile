@@ -1,29 +1,31 @@
 pipeline {
-    agent any    // run on any available Jenkins agent
+    agent {
+        docker { 
+            image 'node:20-alpine' 
+            args '-u root'
+        }
+    }
 
     environment {
-        // define environment variables if needed
         NODE_ENV = 'development'
     }
 
     stages {
-        stage('Build') {
+        stage('Build Frontend') {
             steps {
-                echo 'Building the project...'
-                sh 'npm install'   // command to build (for Node.js)
+                echo 'Building Frontend...'
+                dir('frontend') {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
             }
         }
-        stage('Test') {
+        stage('Build Backend') {
             steps {
-                echo 'Running tests...'
-                sh 'npm test'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying project...'
-                // example command to deploy
-                sh 'scp -r * user@server:/path/to/deploy'
+                echo 'Installing Backend dependencies...'
+                dir('Backend') {
+                    sh 'npm install'
+                }
             }
         }
     }

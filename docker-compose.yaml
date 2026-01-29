@@ -10,7 +10,7 @@ services:
     depends_on:
       - backend
     environment:
-      - VITE_API_URL=http://localhost:4000
+      - VITE_API_URL=http://backend:4000   # Use backend service name, not localhost
 
   backend:
     build: ./Backend
@@ -21,3 +21,6 @@ services:
       - ./Backend/.env
     stdin_open: true
     tty: true
+    dns:
+      - 8.8.8.8   # Google DNS
+      - 1.1.1.1   # Cloudflare DNS

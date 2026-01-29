@@ -1,0 +1,160 @@
+.address-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
+
+.address-card {
+  background: white;
+  padding: 3rem;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 500px;
+  animation: slideUp 0.6s ease-out;
+}
+
+.address-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.address-header h2 {
+  color: #2d3436;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.address-header p {
+  color: #636e72;
+  font-size: 1rem;
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Order Options Styles */
+.order-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid #eee;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.radio-label,
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #555;
+  cursor: pointer;
+}
+
+.radio-label input,
+.checkbox-label input {
+  accent-color: #ff6b6b;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: #eee;
+  margin: 0.5rem 0;
+}
+
+/* Form Groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  color: #2d3436;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="number"] {
+  padding: 1rem;
+  border: 2px solid #e1e1e1;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  background-color: #fafafa;
+}
+
+.form-group input:focus {
+  border-color: #ff6b6b;
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+}
+
+.confirm-btn {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.confirm-btn:hover {
+  background-color: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 107, 107, 0.2);
+}
+
+.confirm-btn:active {
+  transform: translateY(0);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .address-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .address-header h2 {
+    font-size: 1.75rem;
+  }
+}

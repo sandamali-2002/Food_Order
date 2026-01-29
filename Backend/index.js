@@ -15,6 +15,7 @@ app.use(express.json());
 
 // Auth routes
 app.use('/api/auth', authRoutes);
+app.use('/api/order', require('./routes/order'));
 
 // Example route
 app.get('/', (req, res) => {

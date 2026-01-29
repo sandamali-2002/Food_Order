@@ -2,13 +2,12 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'node' 
+        nodejs 'node'
     }
 
     environment {
-        // If the tool name above is not configured in Jenkins, this will fail.
-        // Ensure "Global Tool Configuration" -> "NodeJS" has an installation named "node".
         CI = 'true'
+        DOCKER_HUB_REPO = 'chandimasandamali'
     }
 
     stages {
@@ -26,6 +25,23 @@ pipeline {
                 echo 'Installing Backend dependencies...'
                 dir('Backend') {
                     sh 'npm install'
+                }
+            }
+        }
+        stage('Docker Build & Push') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+                        sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                        
+                        // Backend
+                        sh "docker build -t ${DOCKER_HUB_REPO}/backend:latest ./Backend"
+                        sh "docker push ${DOCKER_HUB_REPO}/backend:latest"
+
+                        // Frontend
+                        sh "docker build -t ${DOCKER_HUB_REPO}/frontend:latest ./frontend"
+                        sh "docker push ${DOCKER_HUB_REPO}/frontend:latest"
+                    }
                 }
             }
         }

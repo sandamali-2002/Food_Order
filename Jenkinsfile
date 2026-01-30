@@ -1,29 +1,21 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'node'
-    }
-
     environment {
         CI = 'true'
     }
 
     stages {
-        stage('Build Frontend') {
+        stage('Deploy') {
             steps {
-                echo 'Building Frontend...'
-                dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run build'
-                }
-            }
-        }
-        stage('Build Backend') {
-            steps {
-                echo 'Installing Backend dependencies...'
-                dir('Backend') {
-                    sh 'npm install'
+                script {
+                    echo 'Stopping existing containers...'
+                    sh 'docker compose down || true'
+                    
+                    echo 'Starting services with Docker Compose...'
+                    sh 'docker compose up -d --build'
+                    
+                    echo 'Deployment completed!'
                 }
             }
         }

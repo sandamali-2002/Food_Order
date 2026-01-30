@@ -10,7 +10,7 @@ export default function OrderForm() {
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("Medium");
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+  const API_URL = import.meta.env.VITE_API_URL || "http://18.213.255.201:3001";
 
   useEffect(() => {
     axios

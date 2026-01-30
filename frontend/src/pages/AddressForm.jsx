@@ -79,7 +79,7 @@ export default function AddressForm() {
     };
 
     try {
-      await axios.post("http://localhost:4000/api/order/complete", orderData);
+      await axios.post("http://18.213.255.201:3001/api/order/complete", orderData);
       alert("Order placed successfully!");
       navigate("/");
     } catch (error) {

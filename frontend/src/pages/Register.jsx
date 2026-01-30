@@ -27,7 +27,7 @@ function Register() {
     }
 
     try {
-      const res = await axios.post('http://localhost:4000/api/auth/register', formData);
+      const res = await axios.post('http://18.213.255.201:3001/api/auth/register', formData);
       alert(res.data.message);
       navigate('/order');
     } catch (err) {

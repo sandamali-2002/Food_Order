@@ -1,26 +1,41 @@
 version: '3.9'
 
 services:
-  frontend:
-    build: ./frontend
-    container_name: frontend_c
+  mongo:
+    image: mongo:latest
+    container_name: mongo_db
     ports:
-      - '5173:5173'
-    command: npm run dev -- --host 0.0.0.0
-    depends_on:
-      - backend
-    environment:
-      - VITE_API_URL=http://backend:4000   # Use backend service name, not localhost
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    restart: always
 
   backend:
     build: ./Backend
     container_name: backend_c
     ports:
-      - '4000:4000'
-    env_file:
-      - ./Backend/.env
+      - '3001:3001'
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/piggybank
+      - JWT_SECRET=your_super_secret_jwt_key_change_in_production
+      - PORT=3001
+    depends_on:
+      - mongo
     stdin_open: true
     tty: true
-    dns:
-      - 8.8.8.8   # Google DNS
-      - 1.1.1.1   # Cloudflare DNS
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: frontend_c
+    ports:
+      - '80:5173'
+    command: npm run dev -- --host 0.0.0.0
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://18.213.255.201:3001
+    restart: always
+
+volumes:
+  mongo_data:

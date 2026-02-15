@@ -26,7 +26,7 @@ const ShopBanner = () => {
 
   return (
     <div className={`shop-banner ${isVisible ? "show" : ""}`}>
-      <h2 className="shop-text">Ready to Make Your Order? </h2>
+      <h2 className="shop-text">sandamali </h2>
        <h2 className="shop-text"> Shop with Us Today!</h2>
       <button onClick={() => navigate("/register")} className="shop-now-btn">
         Shop Now
